@@ -9,7 +9,6 @@
   --text-muted: #a0522d;
 
   --accent: #ff6b6b;
-  --accent-glow: rgba(255, 107, 107, 0.15);
   --indicator: #48d1cc;
 
   --divider: rgba(13, 71, 161, 0.08);
@@ -17,11 +16,11 @@
   --font-sans: "Inter", sans-serif;
   --font-mono: "Space Mono", monospace;
 
-  --space-xs: 1rem;
-  --space-sm: 2rem;
-  --space-md: 4rem;
-  --space-lg: 8rem;
-  --space-xl: 12rem;
+  --space-xs: 0.75rem;
+  --space-sm: 1.5rem;
+  --space-md: 3rem;
+  --space-lg: 5rem;
+  --space-xl: 8rem;
 
   --transition-snap: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -33,7 +32,6 @@
 
 html {
   font-size: 16px;
-  scroll-behavior: smooth;
 }
 
 body {
@@ -139,21 +137,6 @@ section { position: relative; }
   letter-spacing: 0.15em;
   opacity: 0.5;
 }
-
-/*--------------------------------------------------------------
-  Film Grain Overlay
---------------------------------------------------------------*/
-.grain {
-  position: fixed;
-  inset: 0;
-  z-index: 9998;
-  pointer-events: none;
-  opacity: 0.035;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 256px;
-}
-
 
 /*--------------------------------------------------------------
   Scroll Progress
@@ -298,8 +281,6 @@ section { position: relative; }
   position: relative;
   overflow: hidden;
   border: 2px solid var(--text-dark);
-
-  will-change: transform;
 }
 
 .btn::before {
@@ -436,40 +417,23 @@ section { position: relative; }
 
 /* ---- Stroke / Outlined Text ---- */
 .stroke-text {
-  --fill-progress: 0;
   color: transparent;
   -webkit-text-stroke: 2px rgba(248, 248, 255, 0.7);
-  background-image: linear-gradient(
-    to right,
-    var(--bg-primary) 0%,
-    var(--bg-primary) calc(var(--fill-progress) * 100%),
-    transparent calc(var(--fill-progress) * 100%),
-    transparent 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  transition: --fill-progress 0.3s ease;
-  position: relative;
+  transition: color 1.5s ease, -webkit-text-stroke-color 1.5s ease;
 }
 
-/* Highlight line (second name) uses accent for stroke */
+.stroke-text.filled {
+  color: var(--bg-primary);
+  -webkit-text-stroke-color: transparent;
+}
+
 .stroke-text.highlight {
   -webkit-text-stroke-color: var(--accent);
-  background-image: linear-gradient(
-    to right,
-    var(--accent) 0%,
-    var(--accent) calc(var(--fill-progress) * 100%),
-    transparent calc(var(--fill-progress) * 100%),
-    transparent 100%
-  );
 }
 
-
-/* Register the custom property for animation */
-@property --fill-progress {
-  syntax: '<number>';
-  inherits: false;
-  initial-value: 0;
+.stroke-text.highlight.filled {
+  color: var(--accent);
+  -webkit-text-stroke-color: transparent;
 }
 
 .hero-sub {
@@ -533,6 +497,8 @@ section { position: relative; }
   position: absolute;
   border-radius: 50%;
   will-change: transform;
+  transform: translateZ(0);
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .shape-1 {
@@ -560,23 +526,19 @@ section { position: relative; }
 }
 
 .shape-4 {
-  width: 80px;
-  height: 80px;
+  width: 120px;
+  height: 120px;
   right: 10%;
   top: 30%;
-  background: var(--indicator);
-  opacity: 0.06;
+  background: radial-gradient(circle, rgba(72, 209, 204, 0.1) 0%, transparent 70%);
 }
 
 .shape-5 {
-  width: 40px;
-  height: 40px;
+  width: 80px;
+  height: 80px;
   right: 25%;
   bottom: 30%;
-  background: var(--accent);
-  opacity: 0.1;
-  border-radius: 2px;
-  transform: rotate(45deg);
+  background: radial-gradient(circle, rgba(255, 107, 107, 0.08) 0%, transparent 70%);
 }
 
 .float-grid {
@@ -592,54 +554,6 @@ section { position: relative; }
 }
 
 /*--------------------------------------------------------------
-  Marquee Strip
---------------------------------------------------------------*/
-.marquee-strip {
-  padding: 1.5rem 0;
-  overflow: hidden;
-  border-top: 1px solid var(--divider);
-  border-bottom: 1px solid var(--divider);
-  white-space: nowrap;
-  background: var(--bg-primary);
-}
-
-.marquee-track {
-  display: inline-flex;
-  align-items: center;
-  gap: 2rem;
-  animation: marquee 30s linear infinite;
-  font-family: var(--font-mono);
-  font-size: clamp(0.875rem, 1.2vw, 1.1rem);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--text-dark);
-  opacity: 0.5;
-}
-
-.marquee-reverse .marquee-track {
-  animation-direction: reverse;
-}
-
-.marquee-dot {
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  background: var(--indicator);
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.marquee-dot.accent {
-  background: var(--accent);
-}
-
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-/*--------------------------------------------------------------
   About
 --------------------------------------------------------------*/
 #about {
@@ -652,47 +566,7 @@ section { position: relative; }
 
 #about h2 { color: var(--text-dark); }
 
-/* Paper Airplanes */
-.plane-scene {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-}
-
-.paper-plane {
-  position: absolute;
-  right: -60px;
-  width: var(--size, 36px);
-  height: auto;
-  opacity: 0;
-  animation: planeX var(--dur, 6s) cubic-bezier(0.1, 0.6, 0.9, 1) forwards,
-             planeFade var(--dur, 6s) ease forwards;
-  translate: 0 0;
-}
-
-.paper-plane svg {
-  width: 100%;
-  height: auto;
-  fill: var(--text-dark);
-  opacity: var(--opacity, 0.12);
-  transform: scaleX(-1) rotate(0deg);
-}
-
-/* Horizontal movement */
-@keyframes planeX {
-  0%   { right: -60px; }
-  100% { right: 105%; }
-}
-
-/* Fade in/out */
-@keyframes planeFade {
-  0%   { opacity: 0; }
-  4%   { opacity: 1; }
-  70%  { opacity: 0.8; }
-  100% { opacity: 0; }
-}
+/* Lottie Paper Plane (Hero) */
 
 
 .about-content {
@@ -702,10 +576,10 @@ section { position: relative; }
 }
 
 .about-pillars {
-  margin-top: var(--space-sm);
+  margin-top: var(--space-md);
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
 .pillar {
@@ -742,25 +616,27 @@ section { position: relative; }
   Section Headers
 --------------------------------------------------------------*/
 .section-header {
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-md);
   max-width: 700px;
 }
 
-.section-header h2 { margin-bottom: 1.5rem; }
-.section-header p { margin-top: 0.5rem; }
+.section-header h2 { margin-bottom: 1rem; }
+.section-header p { margin-top: 0.25rem; }
 
 /*--------------------------------------------------------------
-  Split Text
+  CSS Reveal Animations
 --------------------------------------------------------------*/
-.split-text .word {
-  display: inline-block;
-  overflow: hidden;
-  vertical-align: bottom;
+.reveal-fade,
+.reveal-slide,
+.reveal-card {
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.split-text .word-inner {
-  display: inline-block;
-  will-change: transform;
+.reveal-fade.revealed,
+.reveal-slide.revealed,
+.reveal-card.revealed {
+  opacity: 1;
 }
 
 /*--------------------------------------------------------------
@@ -772,12 +648,16 @@ section { position: relative; }
 }
 
 .resume-block {
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-md);
+}
+
+.resume-block:last-child {
+  margin-bottom: 0;
 }
 
 .resume-block-title {
   font-size: clamp(1.5rem, 2.5vw, 2rem);
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-sm);
   padding-bottom: var(--space-xs);
   border-bottom: 2px solid var(--divider);
 }
@@ -826,21 +706,20 @@ section { position: relative; }
 
 /* Experience items with animated border reveals on hover */
 .experience-item {
-  padding: var(--space-sm) 0;
+  padding: 1.25rem 0;
   border-bottom: 1px solid var(--divider);
   position: relative;
 }
 
 
 .experience-item:last-child { border-bottom: none; }
-.experience-item:last-child::after { display: none; }
 
 .exp-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 1rem;
-  gap: 2rem;
+  margin-bottom: 0.75rem;
+  gap: 1.5rem;
 }
 
 .exp-header h4 { margin-bottom: 0.25rem; }
@@ -923,7 +802,7 @@ section { position: relative; }
 
 .footer-top {
   text-align: center;
-  padding-bottom: var(--space-lg);
+  padding-bottom: var(--space-md);
   border-bottom: 1px solid rgba(248, 248, 255, 0.08);
 }
 
@@ -1039,7 +918,7 @@ section { position: relative; }
   height: 44px;
   border-radius: 2px;
   background: var(--text-dark);
-  border: none;
+  border: 1px solid var(--bg-primary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1086,8 +965,8 @@ section { position: relative; }
 
 @media (max-width: 768px) {
   :root {
-    --space-xl: 6rem;
-    --space-lg: 4rem;
+    --space-xl: 4rem;
+    --space-lg: 3rem;
   }
 
   .container { padding: 0 1rem; }
