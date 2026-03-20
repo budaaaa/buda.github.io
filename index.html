@@ -56,19 +56,15 @@
 
   <!-- Floating Line Navigation -->
   <nav class="line-nav" id="line-nav">
-    <a href="#about" class="nav-item" data-cursor="link">
+    <a href="#about" class="nav-item">
       <span class="nav-line"></span>
       <span class="nav-text">About</span>
     </a>
-    <a href="#resume" class="nav-item" data-cursor="link">
+    <a href="#resume" class="nav-item">
       <span class="nav-line"></span>
       <span class="nav-text">Experience</span>
     </a>
-    <a href="#projects" class="nav-item" data-cursor="link">
-      <span class="nav-line"></span>
-      <span class="nav-text">Projects</span>
-    </a>
-    <a href="#footer" class="nav-item" data-cursor="link">
+    <a href="#footer" class="nav-item">
       <span class="nav-line"></span>
       <span class="nav-text">Contact</span>
     </a>
@@ -88,52 +84,55 @@
       <div class="hero-content">
         <span class="label hero-label">Engineering Leader</span>
         <h1 class="hero-title">
-          <span class="line"><span class="line-inner stroke-text" data-text="Kristi">Kristi</span></span>
-          <span class="line"><span class="line-inner stroke-text highlight" data-text="Buda">Buda</span></span>
+          <span class="line"><span class="line-inner stroke-text">Kristi</span></span>
+          <span class="line"><span class="line-inner stroke-text highlight">Buda</span></span>
         </h1>
         <p class="hero-sub">
           Building products from scratch, leading international teams, and turning complex ideas into
           solutions used worldwide.
         </p>
         <div class="hero-links">
-          <a href="https://www.linkedin.com/in/budakristi/" target="_blank" class="btn btn-hero magnetic" data-cursor="link"><span>LinkedIn</span></a>
-          <a href="#about" class="btn btn-hero btn-outline magnetic" data-cursor="link"><span>Learn More</span></a>
+          <a href="https://www.linkedin.com/in/budakristi/" target="_blank" class="btn btn-hero magnetic"><span>LinkedIn</span></a>
+          <a href="#about" class="btn btn-hero btn-outline magnetic"><span>Learn More</span></a>
         </div>
-      </div>
-      <div class="scroll-indicator" aria-hidden="true">
-        <div class="scroll-line"></div>
-        <span>Scroll</span>
       </div>
     </div>
   </section>
 
+  <!-- About Photo (bridging hero → about) -->
+  <div class="about-photo-bridge">
+    <img src="assets/img/profile-img.jpg" alt="Kristi Buda">
+  </div>
+
   <!-- ==================== ABOUT ==================== -->
   <section id="about">
     <div class="container">
-      <div class="about-content">
-        <span class="label reveal-fade">About</span>
-        <h2 class="reveal-fade">Turning complexity into clarity.</h2>
-        <p class="reveal-fade">
-          Over a decade of building complex software systems, leading engineering teams across
-          multiple countries, and turning ambitious ideas into products that scale. I thrive at the
-          intersection of technology and leadership, where architecture decisions meet business outcomes.
-        </p>
+      <div class="about-grid">
+        <div class="about-content">
+          <span class="label reveal-fade">About</span>
+          <h2 class="reveal-fade">Turning complexity into clarity.</h2>
+          <p class="reveal-fade">
+            Over a decade of building complex software systems, leading engineering teams across
+            multiple countries, and turning ambitious ideas into products that scale. I thrive at the
+            intersection of technology and leadership, where architecture decisions meet business outcomes.
+          </p>
 
-        <div class="about-pillars">
-          <div class="pillar reveal-slide" style="transition-delay: 0s">
-            <div class="pillar-num">01</div>
-            <h4>Strategic Leadership</h4>
-            <p>Led large-scale projects spanning Engineering, Design, Data Engineering and AI/ML. Enhanced team performance by scaling cross-functional teams through data-driven approaches.</p>
-          </div>
-          <div class="pillar reveal-slide" style="transition-delay: 0.2s">
-            <div class="pillar-num">02</div>
-            <h4>Engineering Solutions</h4>
-            <p>Designed data extraction pipelines processing billions of records. Built complex data structures enabling instant creation and updates in constant time.</p>
-          </div>
-          <div class="pillar reveal-slide" style="transition-delay: 0.4s">
-            <div class="pillar-num">03</div>
-            <h4>Core Competencies</h4>
-            <p>Advanced organisational strategy, engineering operations, strategic leadership, and architecture implementation.</p>
+          <div class="about-pillars">
+            <div class="pillar reveal-slide" style="transition-delay: 0s">
+              <div class="pillar-num">01</div>
+              <h4>Strategic Leadership</h4>
+              <p>Led large-scale projects spanning Engineering, Design, Data Engineering and AI/ML. Enhanced team performance by scaling cross-functional teams through data-driven approaches.</p>
+            </div>
+            <div class="pillar reveal-slide" style="transition-delay: 0.2s">
+              <div class="pillar-num">02</div>
+              <h4>Engineering Solutions</h4>
+              <p>Designed data extraction pipelines processing billions of records. Built complex data structures enabling instant creation and updates in constant time.</p>
+            </div>
+            <div class="pillar reveal-slide" style="transition-delay: 0.4s">
+              <div class="pillar-num">03</div>
+              <h4>Core Competencies</h4>
+              <p>Advanced organisational strategy, engineering operations, strategic leadership, and architecture implementation.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -165,10 +164,10 @@
               <span class="resume-place">London, UK</span>
             </div>
           </div>
-          <p class="exp-desc">AI engineering and automation firm that unlocks hidden capacity in businesses by replacing manual workflows, data processing, and operational bottlenecks with custom-built intelligent systems.</p>
+          <p class="exp-desc">AI engineering firm that unlocks hidden capacity in businesses by replacing manual workflows and operational bottlenecks with custom-built intelligent systems.</p>
           <ul class="exp-list">
             <li>Leading frontend architecture and engineering for Raft, driving the platform's technical direction and delivery.</li>
-            <li>Designed and built a CRDT-based real-time collaboration service for Raft, enabling conflict-free concurrent editing across distributed users.</li>
+            <li>Designed and built a real-time collaboration engine for Raft, enabling concurrent editing across distributed users.</li>
             <li>Architected a high-throughput, high-concurrency service for a refinance company, engineered to handle large volumes of simultaneous users under heavy load.</li>
             <li>Built agentic AI integrations, connecting autonomous agents into client workflows to automate complex multi-step processes.</li>
           </ul>
@@ -243,6 +242,7 @@
               <span class="resume-place">London, UK</span>
             </div>
           </div>
+          <p class="exp-desc">AI platform for freight forwarders and customs brokers, automating document processing, finance workflows, and customer operations.</p>
           <ul class="exp-list">
             <li>Spearheaded company-wide engineering strategy, driving innovation and aligning technical initiatives with business objectives.</li>
             <li>Led and mentored a high-performing engineering team of 30+, fostering a culture of continuous learning and cutting-edge technology adoption.</li>
@@ -342,30 +342,26 @@
       </div>
 
       <!-- Education -->
+      <span class="label reveal-fade sub-label">Education</span>
       <div class="resume-block">
-        <h3 class="resume-block-title reveal-fade">Education</h3>
-        <div class="resume-grid">
-          <div class="resume-card reveal-card">
-            <div class="resume-card-num">01</div>
-            <h4>BSc Computer Science</h4>
-            <span class="resume-date">Oct. 2014 - Sep 2019</span>
-            <p class="resume-place">University of Tirana, Albania</p>
-            <p>Albania's oldest and largest public university. The ICT program is designed to equip students
-              with practical system implementation and a comprehensive understanding of computer technology.</p>
+        <div class="experience-item reveal-slide">
+          <div class="exp-header">
+            <div>
+              <h4>BSc Computer Science</h4>
+              <span class="resume-org">University of Tirana</span>
+            </div>
+            <div class="exp-meta">
+              <span class="resume-date">Oct. 2014 - Sep 2019</span>
+              <span class="resume-place">Tirana, Albania</span>
+            </div>
           </div>
+          <p class="exp-desc">Albania's oldest and largest public university. The ICT program is designed to equip students
+            with practical system implementation and a comprehensive understanding of computer technology.</p>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ==================== PROJECTS ==================== -->
-  <section id="projects">
-    <div class="container">
-      <div class="section-header">
-        <span class="label reveal-fade">Supplemental</span>
-        <h2 class="reveal-fade">Noted projects and activities.</h2>
-      </div>
-
+      <!-- Supplemental -->
+      <span class="label reveal-fade sub-label">Supplemental Activities</span>
       <div class="resume-block">
         <div class="experience-item reveal-slide">
           <div class="exp-header">
@@ -421,6 +417,7 @@
             <li>Presented on "How to build better UX based on data."</li>
           </ul>
         </div>
+
 
         <div class="experience-item reveal-slide">
           <div class="exp-header">
@@ -627,7 +624,8 @@
           .from('.scroll-indicator', { opacity: 0, y: 20, duration: 0.8 }, '-=0.3')
           .from('.site-logo', { opacity: 0, x: -20, duration: 0.8 }, '-=0.8')
           .from('.nav-item', { opacity: 0, x: -10, duration: 0.6, stagger: 0.08 }, '-=0.6')
-          .from('.float-shape', { scale: 0, opacity: 0, duration: 1.5, stagger: 0.2, ease: 'elastic.out(1, 0.5)' }, '-=1.5');
+          .from('.float-shape', { scale: 0, opacity: 0, duration: 1.5, stagger: 0.2, ease: 'elastic.out(1, 0.5)' }, '-=1.5')
+          .from('.about-photo-bridge', { x: 120, opacity: 0, duration: 1.5, ease: 'power3.out' }, '-=1');
       }
 
 
@@ -643,7 +641,7 @@
         });
       }, { threshold: 0.08 });
 
-      document.querySelectorAll('.reveal-fade, .reveal-slide, .reveal-card').forEach(function (el) {
+      document.querySelectorAll('.reveal-fade, .reveal-slide').forEach(function (el) {
         revealObs.observe(el);
       });
 
@@ -806,6 +804,7 @@
         }, { threshold: 0.3 });
         obs.observe(card);
       })();
+
 
 
 

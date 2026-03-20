@@ -41,7 +41,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-
 }
 
 ::selection {
@@ -413,7 +412,8 @@ section { position: relative; }
 .js-loading .scroll-indicator,
 .js-loading .site-logo,
 .js-loading .line-nav,
-.js-loading .float-shape { opacity: 0; visibility: hidden; }
+.js-loading .float-shape,
+.js-loading .about-photo-bridge { opacity: 0; visibility: hidden; }
 
 /* ---- Stroke / Outlined Text ---- */
 .stroke-text {
@@ -564,22 +564,42 @@ section { position: relative; }
   overflow: hidden;
 }
 
-#about h2 { color: var(--text-dark); }
 
-/* Lottie Paper Plane (Hero) */
-
+.about-grid {
+  max-width: 700px;
+}
 
 .about-content {
   position: relative;
   z-index: 1;
-  max-width: 700px;
+}
+
+/* Photo bridging hero → about */
+.about-photo-bridge {
+  position: relative;
+  width: 35%;
+  margin-left: auto;
+  margin-top: -50vh;
+  margin-bottom: -34vh;
+  height: 84vh;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.about-photo-bridge img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 200px 4px 4px 200px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.2);
 }
 
 .about-pillars {
-  margin-top: var(--space-md);
+  margin-top: var(--space-sm);
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1rem;
 }
 
 .pillar {
@@ -616,27 +636,42 @@ section { position: relative; }
   Section Headers
 --------------------------------------------------------------*/
 .section-header {
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-sm);
   max-width: 700px;
 }
 
-.section-header h2 { margin-bottom: 1rem; }
+.section-header h2 { margin-bottom: 0.75rem; }
 .section-header p { margin-top: 0.25rem; }
+
+.sub-label {
+  display: block;
+  margin-top: var(--space-md);
+  margin-bottom: 0.5rem;
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--divider);
+}
 
 /*--------------------------------------------------------------
   CSS Reveal Animations
 --------------------------------------------------------------*/
-.reveal-fade,
-.reveal-slide,
-.reveal-card {
+.reveal-fade {
   opacity: 0;
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-slide {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reveal-fade.revealed,
-.reveal-slide.revealed,
-.reveal-card.revealed {
+.reveal-slide.revealed {
   opacity: 1;
+  transform: translateY(0);
 }
 
 /*--------------------------------------------------------------
@@ -647,39 +682,7 @@ section { position: relative; }
   background: var(--bg-primary);
 }
 
-.resume-block {
-  margin-bottom: var(--space-md);
-}
 
-.resume-block:last-child {
-  margin-bottom: 0;
-}
-
-.resume-block-title {
-  font-size: clamp(1.5rem, 2.5vw, 2rem);
-  margin-bottom: var(--space-sm);
-  padding-bottom: var(--space-xs);
-  border-bottom: 2px solid var(--divider);
-}
-
-.resume-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-md);
-}
-
-.resume-card { padding: var(--space-sm) 0; }
-
-.resume-card-num {
-  font-family: var(--font-mono);
-  font-size: 0.875rem;
-  font-weight: 700;
-  color: var(--indicator);
-  letter-spacing: 0.1em;
-  margin-bottom: var(--space-xs);
-}
-
-.resume-card h4 { margin-bottom: 0.5rem; }
 
 .resume-date {
   font-family: var(--font-mono);
@@ -704,15 +707,20 @@ section { position: relative; }
   font-weight: 500;
 }
 
-/* Experience items with animated border reveals on hover */
+/* Experience items */
 .experience-item {
   padding: 1.25rem 0;
   border-bottom: 1px solid var(--divider);
-  position: relative;
 }
 
+.experience-item:first-child {
+  padding-top: 0;
+}
 
-.experience-item:last-child { border-bottom: none; }
+.experience-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
 
 .exp-header {
   display: flex;
@@ -734,14 +742,22 @@ section { position: relative; }
 .exp-desc {
   font-style: italic;
   opacity: 0.7;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   font-size: 0.95rem;
+}
+
+.exp-desc:last-child {
+  margin-bottom: 0;
 }
 
 .exp-list {
   padding-left: 1.25rem;
-  margin: 0 0 1rem 0;
+  margin: 0;
   list-style: none;
+}
+
+.exp-list + .tech-stack {
+  margin-top: 0.75rem;
 }
 
 .exp-list li {
@@ -772,7 +788,6 @@ section { position: relative; }
   line-height: 1.6;
   color: var(--text-dark);
   opacity: 0.6;
-  margin-top: 1rem;
 }
 
 .tech-label {
@@ -780,15 +795,6 @@ section { position: relative; }
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--indicator);
-}
-
-/*--------------------------------------------------------------
-  Projects
---------------------------------------------------------------*/
-#projects {
-  padding: var(--space-xl) 0;
-  background: var(--bg-secondary);
-  border-top: 1px solid var(--divider);
 }
 
 /*--------------------------------------------------------------
@@ -807,15 +813,7 @@ section { position: relative; }
 }
 
 .footer-top h2 { color: var(--bg-primary); }
-.footer-top h2 .word-inner { color: var(--bg-primary); }
 .footer-top .label { color: var(--indicator); }
-
-.footer-top p {
-  color: var(--bg-primary);
-  opacity: 0.7;
-  margin: 0 auto 2.5rem;
-  max-width: 48ch;
-}
 
 /* Contact Form */
 .contact-form {
@@ -903,9 +901,7 @@ section { position: relative; }
   align-items: center;
 }
 
-.footer-links span,
-.footer-links a { color: var(--bg-primary); }
-.footer-links a:hover { color: var(--indicator); }
+.footer-links span { color: var(--bg-primary); }
 
 /*--------------------------------------------------------------
   Scroll to Top
@@ -956,8 +952,7 @@ section { position: relative; }
   .hero-title { font-size: clamp(3.5rem, 10vw, 7rem); }
 
 
-  .resume-grid { grid-template-columns: 1fr; }
-
+  .about-photo-bridge { display: none; }
   .exp-header { flex-direction: column; gap: 0.5rem; }
   .exp-meta { align-items: flex-start; }
 
