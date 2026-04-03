@@ -23,28 +23,11 @@
 
 <body class="js-loading">
   <script>
-    // Force scroll to top on load
     window.scrollTo(0, 0);
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-
-    // Fallback: if GSAP doesn't load, reveal everything after 4s
-    setTimeout(function() {
-      document.body.classList.remove('js-loading');
-      var loader = document.getElementById('loader');
-      if (loader) loader.style.display = 'none';
-    }, 4000);
   </script>
 
-  <!-- Page Loader -->
-  <div class="loader" id="loader">
-    <div class="loader-inner">
-      <div class="loader-counter" id="loader-counter">0</div>
-      <div class="loader-bar">
-        <div class="loader-bar-fill" id="loader-bar-fill"></div>
-      </div>
-      <div class="loader-text">Loading experience</div>
-    </div>
-  </div>
+  <div class="page-cover" id="page-cover"></div>
 
   <!-- Scroll Progress -->
   <div class="scroll-progress" id="scroll-progress"></div>
@@ -100,8 +83,10 @@
   </section>
 
   <!-- About Photo (bridging hero → about) -->
-  <div class="about-photo-bridge">
-    <img src="assets/img/profile-img.jpg" alt="Kristi Buda">
+  <div class="mobile-bridge">
+    <div class="about-photo-bridge">
+      <img src="assets/img/profile-img.jpg" alt="Kristi Buda">
+    </div>
   </div>
 
   <!-- ==================== ABOUT ==================== -->
@@ -272,7 +257,7 @@
               <span class="resume-org">Polyteia</span>
             </div>
             <div class="exp-meta">
-              <span class="resume-date">May 2018 - Dec 2021</span>
+              <span class="resume-date">2018 - 2021</span>
               <span class="resume-place">Berlin, Germany</span>
             </div>
           </div>
@@ -298,7 +283,7 @@
               <span class="resume-org">Publer</span>
             </div>
             <div class="exp-meta">
-              <span class="resume-date">Jul. 2017 - Sep. 2018</span>
+              <span class="resume-date">2017 - 2018</span>
               <span class="resume-place">Tirana, Albania</span>
             </div>
           </div>
@@ -322,7 +307,7 @@
               <span class="resume-org">Cross-Industry, International</span>
             </div>
             <div class="exp-meta">
-              <span class="resume-date">Aug. 2014 - May 2021</span>
+              <span class="resume-date">2014 - 2021</span>
               <span class="resume-place">Albania, Germany &amp; Remote</span>
             </div>
           </div>
@@ -351,7 +336,7 @@
               <span class="resume-org">University of Tirana</span>
             </div>
             <div class="exp-meta">
-              <span class="resume-date">Oct. 2014 - Sep 2019</span>
+              <span class="resume-date">2014 - 2019</span>
               <span class="resume-place">Tirana, Albania</span>
             </div>
           </div>
@@ -489,7 +474,7 @@
           <textarea name="message" placeholder="Tell me about your project or idea..." rows="5" required></textarea>
           <div id="form-status" class="form-status"></div>
           <div class="form-actions">
-            <button type="submit" class="btn btn-light"><span>Send Message</span></button>
+            <button type="submit" class="btn btn-light magnetic"><span>Send Message</span></button>
             <a href="https://www.linkedin.com/in/budakristi/" target="_blank" class="btn btn-light btn-outline magnetic"><span>LinkedIn</span></a>
           </div>
         </form>
@@ -521,36 +506,18 @@
 
       gsap.registerPlugin(ScrollTrigger);
 
-      // ===================== PAGE LOADER =====================
-      var loader = document.getElementById('loader');
-      var counter = document.getElementById('loader-counter');
-      var barFill = document.getElementById('loader-bar-fill');
-      var count = 0;
-
-      var loaderInterval = setInterval(function () {
-        count += Math.floor(Math.random() * 8) + 2;
-        if (count >= 100) {
-          count = 100;
-          clearInterval(loaderInterval);
-          counter.textContent = '100';
-          barFill.style.width = '100%';
-
-          setTimeout(function () {
-            gsap.to(loader, {
-              yPercent: -100,
-              duration: 0.8,
-              ease: 'power4.inOut',
-              onComplete: function () {
-                loader.style.display = 'none';
-                document.body.classList.remove('js-loading');
-                animateHero();
-              }
-            });
-          }, 300);
+      // Seamless cover → hero transition
+      var cover = document.getElementById('page-cover');
+      gsap.to(cover, {
+        yPercent: -100,
+        duration: 0.4,
+        ease: 'power4.inOut',
+        onComplete: function () {
+          cover.style.display = 'none';
+          document.body.classList.remove('js-loading');
+          animateHero();
         }
-        counter.textContent = count;
-        barFill.style.width = count + '%';
-      }, 40);
+      });
 
 
       // ===================== MAGNETIC BUTTONS (lightweight) =====================
@@ -625,8 +592,20 @@
           .from('.site-logo', { opacity: 0, x: -20, duration: 0.8 }, '-=0.8')
           .from('.nav-item', { opacity: 0, x: -10, duration: 0.6, stagger: 0.08 }, '-=0.6')
           .from('.float-shape', { scale: 0, opacity: 0, duration: 1.5, stagger: 0.2, ease: 'elastic.out(1, 0.5)' }, '-=1.5')
-          .from('.about-photo-bridge', { x: 120, opacity: 0, duration: 1.5, ease: 'power3.out' }, '-=1');
+          .fromTo('.about-photo-bridge', { x: 100, opacity: 0 }, { x: 0, opacity: 0.85, duration: 1.5, ease: 'power3.out' }, '-=1.5');
       }
+
+      // ===================== PARALLAX IMAGE =====================
+      gsap.to('.about-photo-bridge', {
+        yPercent: -40,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#hero',
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 1
+        }
+      });
 
 
 
