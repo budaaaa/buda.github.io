@@ -757,6 +757,97 @@ section { position: relative; }
 }
 
 /*--------------------------------------------------------------
+  Testimonials (DARK)
+--------------------------------------------------------------*/
+#testimonials {
+  background: var(--text-dark);
+  padding: var(--space-xl) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonials-glow {
+  position: absolute;
+  top: -50%;
+  left: -10%;
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(circle, rgba(72, 209, 204, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+  border-radius: 50%;
+}
+
+#testimonials > .container {
+  position: relative;
+  z-index: 2;
+}
+
+.testimonials-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto var(--space-md) auto;
+}
+
+.testimonials-header .label { color: var(--indicator); }
+.testimonials-header h2 { color: var(--bg-primary); }
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2.5rem;
+  margin-top: 3rem;
+}
+
+.testimonial-card {
+  position: relative;
+  padding: 2.5rem;
+  border-radius: 8px;
+  border: 1px solid rgba(248, 248, 255, 0.1);
+  background: rgba(248, 248, 255, 0.03);
+  backdrop-filter: blur(10px);
+}
+
+.testimonial-text {
+  position: relative;
+  z-index: 2;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  color: rgba(248, 248, 255, 0.9);
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-top: 1px solid rgba(248, 248, 255, 0.1);
+  padding-top: 1.5rem;
+}
+
+.testimonial-author h4 {
+  margin-bottom: 0.2rem;
+  font-size: 1rem;
+  color: var(--indicator);
+  letter-spacing: 0.05em;
+}
+
+.testimonial-author span {
+  font-size: 0.8rem;
+  color: rgba(248, 248, 255, 0.6);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.footer-subtitle {
+  margin-bottom: 3rem;
+  max-width: 600px;
+  color: rgba(248, 248, 255, 0.7);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*--------------------------------------------------------------
   Footer (DARK)
 --------------------------------------------------------------*/
 #footer {
@@ -773,6 +864,8 @@ section { position: relative; }
 
 .footer-top h2 { color: var(--bg-primary); }
 .footer-top .label { color: var(--indicator); }
+
+.botcheck { display: none; }
 
 /* Contact Form */
 .contact-form {

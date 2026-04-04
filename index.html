@@ -379,7 +379,6 @@
           </ul>
         </div>
 
-
         <div class="experience-item reveal-slide">
           <div class="exp-header">
             <div>
@@ -432,47 +431,38 @@
   </section>
 
   <!-- ==================== TESTIMONIALS ==================== -->
-  <section id="testimonials" class="dark-section" style="background: var(--text-dark); padding: var(--space-xl) 0; position: relative; overflow: hidden;">
-    
-    <!-- Subtle glow effect -->
-    <div style="position: absolute; top: -50%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, rgba(72, 209, 204, 0.05) 0%, transparent 70%); pointer-events: none; border-radius: 50%;"></div>
-    
-    <div class="container" style="position: relative; z-index: 2;">
-      <div class="section-header" style="text-align: center; max-width: 800px; margin: 0 auto var(--space-md) auto;">
-        <span class="label reveal-fade" style="color: var(--indicator);">Track Record</span>
-        <h2 class="reveal-fade" style="color: var(--bg-primary);">Trusted by engineering leaders.</h2>
+  <section id="testimonials" class="dark-section">
+    <div class="testimonials-glow" aria-hidden="true"></div>
+    <div class="container">
+      <div class="testimonials-header">
+        <span class="label reveal-fade">Track Record</span>
+        <h2 class="reveal-fade">Trusted by engineering leaders.</h2>
       </div>
 
-      <div class="testimonials-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; margin-top: 3rem;">
-        
-        <!-- Card 1 -->
-        <div class="testimonial-card reveal-slide" style="transition-delay: 0s; position: relative; padding: 2.5rem; border-radius: 8px; border: 1px solid rgba(248, 248, 255, 0.1); background: rgba(248, 248, 255, 0.03); backdrop-filter: blur(10px);">
-
-          <p class="testimonial-text" style="position: relative; z-index: 2; font-size: 1.05rem; line-height: 1.8; margin-bottom: 2rem; color: rgba(248, 248, 255, 0.9);">
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal-slide">
+          <p class="testimonial-text">
             Buda is the fastest growing Engineering Manager I've ever seen... His deep knowledge of design, paired with the technical prowess in frontend technologies, and ability to deliver on complex backend infrastructure, really shows what kind of multi-talented individual he is. Not least, his amount of energy and resilience have allowed many people to rely on him with mission-critical deliverables.
           </p>
-          <div class="testimonial-author" style="display: flex; align-items: center; gap: 1rem; border-top: 1px solid rgba(248, 248, 255, 0.1); padding-top: 1.5rem;">
+          <div class="testimonial-author">
             <div class="author-info">
-              <h4 style="margin-bottom: 0.2rem; font-size: 1rem; color: var(--indicator); letter-spacing: 0.05em;">Fabio Tamagno</h4>
-              <span style="font-size: 0.8rem; color: rgba(248, 248, 255, 0.6); font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.05em;">monday.com</span>
+              <h4>Fabio Tamagno</h4>
+              <span>monday.com</span>
             </div>
           </div>
         </div>
 
-        <!-- Card 2 -->
-        <div class="testimonial-card reveal-slide" style="transition-delay: 0.2s; position: relative; padding: 2.5rem; border-radius: 8px; border: 1px solid rgba(248, 248, 255, 0.1); background: rgba(248, 248, 255, 0.03); backdrop-filter: blur(10px);">
-
-          <p class="testimonial-text" style="position: relative; z-index: 2; font-size: 1.05rem; line-height: 1.8; margin-bottom: 2rem; color: rgba(248, 248, 255, 0.9);">
+        <div class="testimonial-card reveal-slide" style="transition-delay: 0.2s">
+          <p class="testimonial-text">
             Working with Kristi I've seen firsthand that he's highly knowledgeable and skilled in real-time collaboration features, and has the discipline to implement clean and professional software.
           </p>
-          <div class="testimonial-author" style="display: flex; align-items: center; gap: 1rem; border-top: 1px solid rgba(248, 248, 255, 0.1); padding-top: 1.5rem;">
+          <div class="testimonial-author">
             <div class="author-info">
-              <h4 style="margin-bottom: 0.2rem; font-size: 1rem; color: var(--indicator); letter-spacing: 0.05em;">Joseph Young</h4>
-              <span style="font-size: 0.8rem; color: rgba(248, 248, 255, 0.6); font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.05em;">Artificial Labs</span>
+              <h4>Joseph Young</h4>
+              <span>Artificial Labs</span>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </section>
@@ -483,7 +473,7 @@
       <div class="footer-top">
         <span class="label reveal-fade">Availability</span>
         <h2 class="reveal-fade">Let's talk scale.</h2>
-        <p class="reveal-fade" style="margin-bottom: 3rem; max-width: 600px; color: rgba(248, 248, 255, 0.7); margin-left: auto; margin-right: auto;">
+        <p class="reveal-fade footer-subtitle">
           I partner best with ambitious founders driving new product capabilities, and high-velocity teams needing elite engineering execution to launch and scale their vision.
         </p>
 
@@ -491,7 +481,7 @@
           <input type="hidden" name="access_key" value="8cefe3b2-6bbb-41fb-a3b4-b4e495a3fadd">
           <input type="hidden" name="subject" value="New Contact from buda.dev">
           <input type="hidden" name="from_name" value="buda.dev Contact Form">
-          <input type="checkbox" name="botcheck" style="display: none;">
+          <input type="checkbox" name="botcheck" class="botcheck">
           <div class="form-grid">
             <input type="text" name="name" placeholder="Name" required />
             <input type="email" name="email" placeholder="Email" required />
