@@ -741,6 +741,9 @@ section { position: relative; }
 
 .exp-list li:last-child { margin-bottom: 0; }
 
+/* Present in HTML for scrapers/LLMs, hidden from users until typed in by animation */
+.raft-animated-bullet { display: none; }
+
 .tech-stack {
   font-family: var(--font-mono);
   font-size: 0.75rem;
